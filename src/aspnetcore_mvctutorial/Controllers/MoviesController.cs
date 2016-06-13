@@ -20,11 +20,27 @@ namespace aspnetcore_mvctutorial.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Movie.ToListAsync());
+            var movies = from m in _context.Movie
+                         select m;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+            return View(await movies.ToListAsync()); //Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the ToListAsync method 
         }
 
+
+        //overload for Index;
+        /*
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+        */
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -83,7 +99,7 @@ namespace aspnetcore_mvctutorial.Controllers
         // POST: Movies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost]   //-- only invoked for POST request
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Genre,Price,ReleaseDate,Title")] Movie movie)
         {
