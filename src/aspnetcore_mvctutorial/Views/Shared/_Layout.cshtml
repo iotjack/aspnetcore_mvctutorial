@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - aspnetcore_mvctutorial</title>
+    <title>@ViewData["Title"] - aspnetcore mvc tutorial</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,6 +26,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a asp-controller="Movies" asp-action="Index" class="navbar-brand">Mvc Movie</a>
+
                 <a asp-controller="Home" asp-action="Index" class="navbar-brand">aspnetcore_mvctutorial</a>
             </div>
             <div class="navbar-collapse collapse">
@@ -43,6 +45,7 @@
         <hr />
         <footer>
             <p>&copy; 2016 - aspnetcore_mvctutorial</p>
+            <a href="https://docs.asp.net/en/latest/tutorials/first-mvc-app/adding-view.html">https://docs.asp.net/en/latest/tutorials/first-mvc-app/adding-view.html</a>
         </footer>
     </div>
 

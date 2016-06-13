@@ -11,23 +11,34 @@ namespace aspnetcore_mvctutorial.Controllers
     {
         // GET: /HelloWorld/
 
-        public string Index()
+        //public string Index()
+        //{
+        //    //            return View();
+        //    return "This is my default action...";
+        //}
+
+        public IActionResult Index()
         {
-            //            return View();
-            return "This is my default action...";
+            return View();
         }
 
         // GET: /HelloWorld/Welcome/ 
 
-        public string Welcome1()
+        /*public string Welcome()
         {
             return "This is the Welcome action method...";
-        }
-
-        public string Welcome(string name, int ID = 1)
-        {
             //uses HtmlEncoder.Default.Encode to protect the app from malicious input (namely JavaScript).
             return HtmlEncoder.Default.Encode("Hello " + name + ", ID: " + ID);
+        }
+        */
+        public IActionResult Welcome(string name, int numTimes = 1)
+        {
+
+            ViewData["Message"] = "Hello " + name;
+            ViewData["NumTimes"] = numTimes;
+
+            return View();
+
         }
 
 
