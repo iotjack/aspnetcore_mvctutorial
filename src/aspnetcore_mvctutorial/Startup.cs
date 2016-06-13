@@ -83,6 +83,9 @@ namespace aspnetcore_mvctutorial
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //SeedData.Initialize(app.ApplicationServices);
+
         }
     }
 }
